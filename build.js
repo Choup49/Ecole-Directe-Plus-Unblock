@@ -1,4 +1,3 @@
-
 const fs = require("fs");
 const path = require("path");
 
@@ -131,4 +130,3 @@ async function build(browser) {
 }
 
 build(browser);
-
