@@ -1,28 +1,39 @@
 {
-    "manifest_version": 3,
+    "name": "Ecole Directe Plus Unblock",
+    "version": "0.1.8",
+    "description": "Permet le fonctionnement du site Ecole Directe Plus sur PC. Fait la passerelle entre votre ordinateur et l'API d'EcoleDirecte.",
+    "homepage_url": "https://ecole-directe.plus/login",
+
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.ecoledirecte.com/*"
+            ],
+            "js": [
+                "promoteEDP.js"
+            ]
+        },
+        {
+            "matches": [
+                "https://ecole-directe.plus/*"
+            ],
+            "js": [
+                "removeEDPUnblockBanner.js"
+            ]
+        }
+    ],
+
+    "icons": {
+        "48": "icons/EDP-Unblock-logo-dark.png"
+    },
+
     "permissions": [
-        "declarativeNetRequest",
-        "scripting",
-        "activeTab"
+        "webRequest",
+        "webRequestBlocking",
+        "*://*/*"
     ],
-    "host_permissions": [
-        "*://*.ecole-directe.plus/*",
-        "*://*.ecoledirecte.com/*"
-    ],
+
     "background": {
-        "service_worker": "index.chromium.js"
-    },
-    "declarative_net_request": {
-        "rule_resources": [
-            {
-                "id": "change_origin",
-                "enabled": true,
-                "path": "rulesets/change_origin.json"
-            }
-        ]
-    },
-    "action": {
-        "default_title": "Ecole Directe Plus • Unblock",
-        "default_popup": "popup/popup.html"
+        "service_worker": "background.js"
     }
 }
