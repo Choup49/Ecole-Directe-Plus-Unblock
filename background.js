@@ -1,11 +1,15 @@
-chrome.webRequest.onHeadersReceived.addListener(
-    (details) => {
-        const headers = details.responseHeaders.filter(
-            (header) =>
-                !["access-control-allow-origin", "access-control-allow-headers"].includes(
-                    header.name.toLowerCase()
-                )
-        );
+chrome.webRequest.onBeforeSendHeaders.addListener(
+    function(details) {
+        details.requestHeaders.push({
+            name: "Access-Control-Allow-Origin",
+            value: "*"
+        });
+        return { requestHeaders: details.requestHeaders };
+    },
+    { urls: ["https://ecole-directe.plus/*", "https://www.ecoledirecte.com/*"] },
+    ["blocking", "requestHeaders"]
+);
+
 
         headers.push(
             { name: "Access-Control-Allow-Origin", value: "*" },
