@@ -28,11 +28,12 @@
     "48": "icons/EDP-Unblock-logo-dark.png"
   },
 
-  "permissions": [
-    "webRequest",
-    "webRequestBlocking",
-    "*://*/*"
-  ],
+"permissions": [
+  "webRequest",
+  "webRequestBlocking",
+  "*://*/*"
+],
+
 
   "background": {
     "service_worker": "background.js"
