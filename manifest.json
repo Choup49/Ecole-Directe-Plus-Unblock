@@ -1,4 +1,5 @@
 {
+  "manifest_version": 3,
   "name": "Ecole Directe Plus Unblock",
   "version": "0.1.8",
   "description": "Permet le fonctionnement du site Ecole Directe Plus sur PC. Fait la passerelle entre votre ordinateur et l'API d'EcoleDirecte.",
