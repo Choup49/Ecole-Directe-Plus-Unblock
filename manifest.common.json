@@ -3,7 +3,9 @@
     "version": "0.1.8",
     "description": "Permet le fonctionnement du site Ecole Directe Plus sur PC. Fait la passerelle entre votre ordinateur et l'API d'EcoleDirecte.",
     "homepage_url": "https://ecole-directe.plus/login",
-
+    "icons": {
+        "48": "icons/EDP-Unblock-logo-dark.png"
+    },
     "content_scripts": [
         {
             "matches": [
@@ -21,20 +23,5 @@
                 "removeEDPUnblockBanner.js"
             ]
         }
-    ],
-
-    "icons": {
-        "48": "icons/EDP-Unblock-logo-dark.png"
-    }
-    "permissions": [
-        "webRequest",
-        "webRequestBlocking",
-        "*://*/*"
-],
- 	"background": {
-    	"service_worker": "background.js"
+    ]
 }
-
-
-}
-
