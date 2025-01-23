@@ -10,16 +10,24 @@
   },
 
   "permissions": [
-    "declarativeNetRequest",
-    "declarativeNetRequestWithHostAccess",
-    "activeTab",
-    "scripting"
-  ],
-
-  "host_permissions": [
-    "https://*/*",
-    "http://*/*"
-  ],
+  "declarativeNetRequest",
+  "declarativeNetRequestWithHostAccess",
+  "activeTab",
+  "scripting"
+],
+"host_permissions": [
+  "https://www.ecoledirecte.com/*",
+  "https://ecole-directe.plus/*"
+],
+"declarative_net_request": {
+  "rule_resources": [
+    {
+      "id": "rules",
+      "enabled": true,
+      "path": "rules.json"
+    }
+  ]
+},
 
   "content_scripts": [
     {
@@ -34,15 +42,6 @@
 
   "background": {
     "service_worker": "background.js"
-  },
 
-  "declarative_net_request": {
-    "rule_resources": [
-      {
-        "id": "rules",
-        "enabled": true,
-        "path": "rules.json"
-      }
-    ]
   }
 }
