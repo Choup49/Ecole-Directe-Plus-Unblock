@@ -1,31 +1,18 @@
 [
-    {
-      "id": 1,
-      "priority": 1,
-      "action": {
-        "type": "modifyHeaders",
-        "responseHeaders": [
-          {
-            "header": "Access-Control-Allow-Origin",
-            "operation": "set",
-            "value": "*"
-          },
-          {
-            "header": "Access-Control-Allow-Methods",
-            "operation": "set",
-            "value": "GET, POST, PUT, DELETE, OPTIONS"
-          },
-          {
-            "header": "Access-Control-Allow-Headers",
-            "operation": "set",
-            "value": "*"
-          }
-        ]
-      },
-      "condition": {
-        "urlFilter": "https://www.ecoledirecte.com/*",
-        "resourceTypes": ["xmlhttprequest"]
-      }
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "responseHeaders": [
+        { "header": "Access-Control-Allow-Origin", "operation": "set", "value": "*" },
+        { "header": "Access-Control-Allow-Methods", "operation": "set", "value": "GET, POST, OPTIONS, PUT, DELETE" },
+        { "header": "Access-Control-Allow-Headers", "operation": "set", "value": "*" }
+      ]
+    },
+    "condition": {
+      "urlFilter": "https://api.ecoledirecte.com/*",
+      "resourceTypes": ["xmlhttprequest"]
     }
-  ]
-  
+  }
+]

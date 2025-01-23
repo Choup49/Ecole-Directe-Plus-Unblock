@@ -5,30 +5,6 @@
   "description": "Permet le fonctionnement du site Ecole Directe Plus sur PC. Fait la passerelle entre votre ordinateur et l'API d'EcoleDirecte.",
   "homepage_url": "https://ecole-directe.plus/login",
 
-  "icons": {
-    "48": "icons/EDP-Unblock-logo-dark.png"
-  },
-
-  "permissions": [
-  "declarativeNetRequest",
-  "declarativeNetRequestWithHostAccess",
-  "activeTab",
-  "scripting"
-],
-"host_permissions": [
-  "https://www.ecoledirecte.com/*",
-  "https://ecole-directe.plus/*"
-],
-"declarative_net_request": {
-  "rule_resources": [
-    {
-      "id": "rules",
-      "enabled": true,
-      "path": "rules.json"
-    }
-  ]
-},
-
   "content_scripts": [
     {
       "matches": ["https://www.ecoledirecte.com/*"],
@@ -40,8 +16,33 @@
     }
   ],
 
+  "icons": {
+    "48": "icons/EDP-Unblock-logo-dark.png"
+  },
+
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "activeTab",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+
   "background": {
     "service_worker": "background.js"
-
   }
 }
