@@ -21,12 +21,12 @@
   },
 
   "permissions": [
-    "webRequest",
-    "webRequestBlocking",
-    "http://*/*",
-    "https://*/*"
-  ],
-
+      "webRequest",
+      "webRequestBlocking",
+      "https://*/",
+      "http://*/"
+  ]
+,
   "background": {
     "scripts": ["background.js"],
     "persistent": false
