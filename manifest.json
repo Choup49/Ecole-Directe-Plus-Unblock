@@ -24,23 +24,24 @@
     "declarativeNetRequest",
     "declarativeNetRequestWithHostAccess",
     "activeTab",
-    "scripting"
+    "scripting",
+    "runtime"
   ],
 
   "host_permissions": [
-    "https://*/*",
-    "http://*/*"
+    "https://ecole-directe.plus/",
+    "https://ecole-directe/"
   ],
 
   "declarative_net_request": {
-    "rule_resources": [
-      {
-        "id": "rules",
-        "enabled": true,
-        "path": "rules.json"
-      }
-    ]
-  },
+  "rule_resources": [
+    {
+      "id": "rules",
+      "enabled": true,
+      "path": "rules.json"
+    }
+  ]
+},
 
   "background": {
     "service_worker": "background.js"

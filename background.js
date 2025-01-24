@@ -1,37 +1,38 @@
-// Modification des en-têtes de requête avant l'envoi
-chrome.webRequest.onBeforeSendHeaders.addListener(
-    function (details) {
-      details.requestHeaders.push({
-        name: "Access-Control-Allow-Origin",
-        value: "*",
-      });
-      return { requestHeaders: details.requestHeaders };
-    },
-    {
-      urls: [
-        "https://ecole-directe.plus/*",
-        "https://www.ecoledirecte.com/*",
-        "https://api.ecoledirecte.com/*", // URL de l'API spécifique
-      ],
-    },
-    ["blocking", "requestHeaders"]
-  );
-  
-  // Modification des en-têtes de réponse
-  chrome.webRequest.onHeadersReceived.addListener(
-    function (details) {
-      let headers = details.responseHeaders || [];
-      headers.push(
-        { name: "Access-Control-Allow-Origin", value: "*" },
-        { name: "Access-Control-Allow-Methods", value: "GET, POST, PUT, DELETE, OPTIONS" },
-        { name: "Access-Control-Allow-Headers", value: "Content-Type, Authorization" }
-      );
-  
-      return { responseHeaders: headers };
-    },
-    {
-      urls: ["https://api.ecoledirecte.com/*"], // Spécifique à l'API Ecole Directe
-    },
-    ["blocking", "responseHeaders"]
-  );
-  
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === 'GET_EXTENSION_INFO') {
+      sendResponse({ version: chrome.runtime.getManifest().version });
+  }
+});
+if (response && response.version) {
+  const message = {
+      type: "EDP_UNBLOCK",
+      payload: {
+          message: "EXTENSION_INSTALLED",
+          version: response.version
+      }
+  };
+
+  window.postMessage(message, "*");
+} else {
+  console.error("Failed to retrieve extension information.");
+}
+window.postMessage({ ...message, source: "EDP_EXTENSION" }, "*");
+chrome.runtime.sendMessage({ type: 'GET_EXTENSION_INFO' }, (response) => {
+  if (chrome.runtime.lastError) {
+      console.error("Error communicating with the extension:", chrome.runtime.lastError.message);
+      return;
+  }
+
+  if (response) {
+      const message = {
+          type: "EDP_UNBLOCK",
+          payload: {
+              message: "EXTENSION_INSTALLED",
+              version: response.version
+          }
+      };
+      window.postMessage(message, "*");
+  } else {
+      console.error("No response from the extension.");
+  }
+});
